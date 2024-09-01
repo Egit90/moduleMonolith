@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "87qIDMIFX/RjdW+VwHpati62+IAhN3MrlZ//GqQl8rgwyBM6Z9ZjLtRxjAy6CbCffsiP+kZb+x7uTY6nzw1ZEg==",
+  "dgSpecHash": "WfIpFvHfIQoECpW+4cjXB2fchz+CvT+iLbhcbXXc5JWIWhju8M+sYKbGogczTvHKz+gWTmfisJEUTVEvtE2phQ==",
   "success": true,
   "projectFilePath": "/home/eliem/projects/moduleMonolith/src/Modules/Basket/Basket/Basket.csproj",
   "expectedPackageFiles": [
+    "/home/eliem/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/home/eliem/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/home/eliem/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/home/eliem/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
     "/home/eliem/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "/home/eliem/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
