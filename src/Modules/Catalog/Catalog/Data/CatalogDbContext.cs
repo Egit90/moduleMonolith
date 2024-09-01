@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Data;
 
-public sealed class CatalogDb(DbContextOptions options) : DbContext(options)
+public sealed class CatalogDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Product> Products => Set<Product>();
 
