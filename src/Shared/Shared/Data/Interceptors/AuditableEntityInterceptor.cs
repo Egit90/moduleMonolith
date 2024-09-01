@@ -27,13 +27,13 @@ public sealed class AuditableEntityInterceptor : SaveChangesInterceptor
             if (entity.State == EntityState.Added)
             {
                 entity.Entity.CreateBy = "elie";
-                entity.Entity.CreatedAt = DateTime.Now;
+                entity.Entity.CreatedAt = DateTime.UtcNow;
             }
 
             if (entity.State == EntityState.Added || entity.State == EntityState.Modified || entity.HasChangedOwnedEntities())
             {
                 entity.Entity.LastModifiedBy = "elie";
-                entity.Entity.LastModified = DateTime.Now;
+                entity.Entity.LastModified = DateTime.UtcNow;
             }
         }
     }
