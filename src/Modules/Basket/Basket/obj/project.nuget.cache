@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "B8fmjsyxbw+HjSYxPc3cA147E0ph1lOJIQChgnjgwfOGc1h9zk+KdRK4M/cvYZzfNqPqv5vVkqWYUxuDCXnyow==",
+  "dgSpecHash": "87qIDMIFX/RjdW+VwHpati62+IAhN3MrlZ//GqQl8rgwyBM6Z9ZjLtRxjAy6CbCffsiP+kZb+x7uTY6nzw1ZEg==",
   "success": true,
   "projectFilePath": "/home/eliem/projects/moduleMonolith/src/Modules/Basket/Basket/Basket.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/eliem/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/home/eliem/.nuget/packages/microsoft.extensions.dependencyinjection/8.0.0/microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "/home/eliem/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "/home/eliem/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,13 @@
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/bin/Debug/net8.0/Shared.deps.json
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/bin/Debug/net8.0/Shared.dll
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/bin/Debug/net8.0/Shared.pdb
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.GeneratedMSBuildEditorConfig.editorconfig
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.AssemblyInfoInputs.cache
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.AssemblyInfo.cs
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.csproj.CoreCompileInputs.cache
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.sourcelink.json
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.dll
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/refint/Shared.dll
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.pdb
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/ref/Shared.dll
+/home/eliem/projects/moduleMonolith/src/Shared/Shared/obj/Debug/net8.0/Shared.csproj.AssemblyReference.cache
