@@ -1,8 +1,9 @@
+using Catalog.Products.Events;
 using Shared.DDD;
 
 namespace Catalog.Products.Models;
 
-public sealed class Product : Entity<Guid>
+public sealed class Product : Aggregate<Guid>
 {
     public string Name { get; private set; } = default!;
     public List<string> Category { get; private set; } = [];
@@ -15,7 +16,7 @@ public sealed class Product : Entity<Guid>
         ArgumentException.ThrowIfNullOrEmpty(name);
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(price);
 
-        return new Product
+        var product = new Product
         {
             Name = name,
             Category = category,
@@ -23,8 +24,10 @@ public sealed class Product : Entity<Guid>
             ImageFile = imageFile,
             Price = price
         };
-    }
 
+        product.AddDomainEvent(new ProductCreatedEvent(product));
+        return product;
+    }
     public void Update(string name, List<string> category, string description, string imageFile, decimal price)
     {
         ArgumentException.ThrowIfNullOrEmpty(name);
@@ -35,5 +38,7 @@ public sealed class Product : Entity<Guid>
         Description = description;
         ImageFile = imageFile;
         Price = price;
+
+        if (Price != price) AddDomainEvent(new ProductPriceChangeEvent(this));
     }
 }
