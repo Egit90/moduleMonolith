@@ -11,7 +11,7 @@ namespace Shared.DDD;
 public interface IAggregate : IEntity
 {
     IReadOnlyList<IDomainEvent> DomainEvents { get; }
-    IDomainEvent[] ClearDomainArray();
+    IDomainEvent[] ClearDomainEvents();
 }
 
 public interface IAggregate<T> : IAggregate, IEntity<T>
@@ -28,7 +28,7 @@ public abstract class Aggregate<TID> : Entity<TID>, IAggregate<TID>
     {
         _domainEvents.Add(domainEvent);
     }
-    public IDomainEvent[] ClearDomainArray()
+    public IDomainEvent[] ClearDomainEvents()
     {
         IDomainEvent[] dequeuedEvents = [.. _domainEvents];
         _domainEvents.Clear();
