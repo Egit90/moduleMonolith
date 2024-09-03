@@ -1,6 +1,5 @@
 using Catalog.Data;
 using Catalog.Products.Dtos;
-using Catalog.Products.Models;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
@@ -10,7 +9,7 @@ namespace Catalog.Products.Features.GetProducts;
 public sealed record GetProductQuery() : IQuery<GetProductResponse>;
 
 public sealed record GetProductResponse(IEnumerable<ProductDto> Products);
-public sealed class GetProducts(CatalogDbContext dbContext) : IQueryHandler<GetProductQuery, GetProductResponse>
+public sealed class GetProductsHandler(CatalogDbContext dbContext) : IQueryHandler<GetProductQuery, GetProductResponse>
 {
     public async Task<GetProductResponse> Handle(GetProductQuery request, CancellationToken cancellationToken)
     {
