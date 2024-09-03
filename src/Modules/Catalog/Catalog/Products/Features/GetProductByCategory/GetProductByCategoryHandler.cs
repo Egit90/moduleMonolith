@@ -6,13 +6,13 @@ using Shared.CQRS;
 
 namespace Catalog.Products.Features.GetProductByCategory;
 
-public sealed record GetProductByCategoryQuery(string Category) : IQuery<GetProductByCategoryResponse>;
+public sealed record GetProductByCategoryQuery(string Category) : IQuery<GetProductByCategoryResults>;
 
-public sealed record GetProductByCategoryResponse(IEnumerable<ProductDto> Products);
+public sealed record GetProductByCategoryResults(IEnumerable<ProductDto> Products);
 
-public class GetProductByCategoryHandler(CatalogDbContext dbContext) : IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResponse>
+public class GetProductByCategoryHandler(CatalogDbContext dbContext) : IQueryHandler<GetProductByCategoryQuery, GetProductByCategoryResults>
 {
-    public async Task<GetProductByCategoryResponse> Handle(GetProductByCategoryQuery request, CancellationToken cancellationToken)
+    public async Task<GetProductByCategoryResults> Handle(GetProductByCategoryQuery request, CancellationToken cancellationToken)
     {
         var products = await dbContext.Products
                      .AsNoTracking()
