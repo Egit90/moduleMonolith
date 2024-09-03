@@ -25,7 +25,7 @@ public static class CatalogModule
 
         services.AddDbContext<CatalogDbContext>((sp, opt) =>
         {
-            opt.AddInterceptors(sp.GetService<ISaveChangesInterceptor>());
+            opt.AddInterceptors(sp.GetService<ISaveChangesInterceptor>()!);
             opt.UseNpgsql(connectionString);
         });
 

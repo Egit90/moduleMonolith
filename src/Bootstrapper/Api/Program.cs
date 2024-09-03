@@ -1,8 +1,18 @@
 using Basket;
+using Carter;
 using Catalog;
 using Ordering;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCarter(configurator: config =>
+{
+    var CarterModules = typeof(CarterModule).Assembly.GetTypes()
+                .Where(t => t.IsAssignableTo(typeof(ICarterModule)))
+                .ToArray();
+
+    config.WithModules(CarterModules);
+});
 
 // Add Services
 builder.Services
