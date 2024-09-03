@@ -6,7 +6,7 @@ using Shared.CQRS;
 namespace Catalog.Products.Features.UpdateProduct;
 
 public sealed record UpdateProductCommand(ProductDto Product) : ICommand<UpdateProductResults>;
-public sealed record UpdateProductResults(bool Success);
+public sealed record UpdateProductResults(bool IsSuccess);
 
 public sealed class UpdateProductHandler(CatalogDbContext dbContext) : ICommandHandler<UpdateProductCommand, UpdateProductResults>
 {

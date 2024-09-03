@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Catalog.Products.Features.UpdateProduct;
 
-public sealed record UpdateProductRequest(ProductDto ProductDto);
+public sealed record UpdateProductRequest(ProductDto Product);
 public sealed record UpdateProductResponse(bool IsSuccess);
 public sealed class UpdateProductEndPoint : CarterModule
 {
@@ -17,9 +17,9 @@ public sealed class UpdateProductEndPoint : CarterModule
     {
         app.MapPut("/products", async (UpdateProductRequest request, ISender sender) =>
         {
-            var UpdateCommand = request.ProductDto.Adapt<UpdateProductCommand>();
+            var UpdateCommand = request.Adapt<UpdateProductCommand>();
             var UpdateCommandRes = await sender.Send(UpdateCommand);
-            var res = UpdateCommand.Adapt<UpdateProductResponse>();
+            var res = UpdateCommandRes.Adapt<UpdateProductResponse>();
 
             return Results.Ok(res);
         })
