@@ -1,4 +1,5 @@
 using Catalog.Data;
+using FluentValidation;
 using Shared.CQRS;
 
 namespace Catalog.Products.Features.DeleteProduct;
@@ -6,6 +7,15 @@ namespace Catalog.Products.Features.DeleteProduct;
 
 public sealed record DeleteProductCommand(Guid ID) : ICommand<DeleteProductResponse>;
 public sealed record DeleteProductResponse(bool IsSuccess);
+
+public class DeleteProductCommandValidator : AbstractValidator<DeleteProductCommand>
+{
+    public DeleteProductCommandValidator()
+    {
+        RuleFor(x => x.ID).NotEmpty().WithMessage("Product Id is required");
+    }
+}
+
 public class DeleteProductHandler(CatalogDbContext dbContext) : ICommandHandler<DeleteProductCommand, DeleteProductResponse>
 {
     public async Task<DeleteProductResponse> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
