@@ -1,4 +1,5 @@
 using Catalog.Data;
+using Catalog.Products.Exceptions;
 using FluentValidation;
 using Shared.CQRS;
 
@@ -21,7 +22,7 @@ public class DeleteProductHandler(CatalogDbContext dbContext) : ICommandHandler<
     public async Task<DeleteProductResponse> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
         var product = await dbContext.Products.FindAsync([command.ID], cancellationToken: cancellationToken)
-            ?? throw new Exception($"Product Was Not Found: {command.ID}");
+            ?? throw new ProductNotFoundException(command.ID);
 
         dbContext.Products.Remove(product);
 
