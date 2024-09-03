@@ -1,11 +1,13 @@
 ﻿using System.Reflection;
 using Catalog.Data;
 using Catalog.Data.Seed;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shared.Behaviors;
 using Shared.Data;
 using Shared.Data.Interceptors;
 using Shared.Data.Seed;
@@ -18,7 +20,12 @@ public static class CatalogModule
     {
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-        services.AddMediatR(c => c.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+        services.AddMediatR(c =>
+        {
+            c.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+            c.AddOpenBehavior(typeof(ValidationBehavior<,>));
+        });
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
