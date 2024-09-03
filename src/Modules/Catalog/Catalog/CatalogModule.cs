@@ -24,7 +24,9 @@ public static class CatalogModule
         {
             c.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
             c.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            c.AddOpenBehavior(typeof(LoggingBehavior<,>));
         });
+
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
