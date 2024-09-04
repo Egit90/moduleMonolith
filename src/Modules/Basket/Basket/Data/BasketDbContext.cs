@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Basket.Data;
 
-public class BasketDbContext(DbContextOptions options) : DbContext(options)
+public class BasketDbContext(DbContextOptions<BasketDbContext> options) : DbContext(options)
 {
     public DbSet<ShoppingCart> ShoppingCarts => Set<ShoppingCart>();
     public DbSet<ShoppingCartItem> ShoppingCartItems => Set<ShoppingCartItem>();
