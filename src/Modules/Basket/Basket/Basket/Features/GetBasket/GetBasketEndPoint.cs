@@ -25,7 +25,6 @@ public sealed class GetBasketEndPoint : ICarterModule
         .Produces<GetBasketResponse>(StatusCodes.Status200OK)
         .ProducesProblem(StatusCodes.Status400BadRequest)
         .WithSummary("Get Basket")
-        .WithDescription("Get Basket")
-        .RequireAuthorization();
+        .WithDescription("Get Basket");
     }
 }

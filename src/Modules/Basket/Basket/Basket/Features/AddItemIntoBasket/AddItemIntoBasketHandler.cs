@@ -35,7 +35,7 @@ internal sealed class AddItemIntoBasketHandler(BasketDbContext context) : IComma
             command.ShoppingCartItem.ProductId,
             command.ShoppingCartItem.Quantity,
             command.ShoppingCartItem.Color,
-            command.ShoppingCartItem.price,
+            command.ShoppingCartItem.Price,
             command.ShoppingCartItem.ProductName);
 
         await context.SaveChangesAsync(cancellationToken);

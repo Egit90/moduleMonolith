@@ -33,7 +33,7 @@ internal sealed class CreateBasketHandler(BasketDbContext context) : ICommandHan
         var basket = ShoppingCart.Create(Guid.NewGuid(), shoppingCart.UserName);
         shoppingCart.Items.ForEach(item =>
         {
-            basket.AddItem(item.ProductId, item.Quantity, item.Color, item.price, item.ProductName);
+            basket.AddItem(item.ProductId, item.Quantity, item.Color, item.Price, item.ProductName);
         });
 
         return basket;
