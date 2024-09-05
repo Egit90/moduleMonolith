@@ -1,4 +1,5 @@
 using System;
+using Basket.Basket.Exceptions;
 using Shared.DDD;
 
 namespace Basket.Basket.Models;
@@ -43,7 +44,8 @@ public sealed class ShoppingCart : Aggregate<Guid>
 
     public void RemoveItem(Guid productId)
     {
-        var existingItems = Items.FirstOrDefault(x => x.ProductId == productId);
+        var existingItems = Items.FirstOrDefault(x => x.ProductId == productId)
+                            ?? throw new ItemNotFoundInBasketException(productId.ToString());
         if (existingItems != null)
         {
             _items.Remove(existingItems);

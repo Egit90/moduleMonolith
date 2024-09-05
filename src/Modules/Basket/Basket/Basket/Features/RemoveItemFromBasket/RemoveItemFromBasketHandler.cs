@@ -24,6 +24,7 @@ internal sealed class RemoveItemFromBasketHandler(BasketDbContext context) : ICo
     public async Task<RemoveItemFromBasketResult> Handle(RemoveItemFromBasketCommand command, CancellationToken cancellationToken)
     {
         var cart = await context.ShoppingCarts
+                                .Include(x => x.Items)
                                 .SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken: cancellationToken)
                                 ?? throw new BasketNotFoundException(command.UserName);
 
