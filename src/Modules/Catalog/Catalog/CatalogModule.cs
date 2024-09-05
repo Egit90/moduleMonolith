@@ -20,15 +20,6 @@ public static class CatalogModule
     {
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-        services.AddMediatR(c =>
-        {
-            c.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
-            c.AddOpenBehavior(typeof(ValidationBehavior<,>));
-            c.AddOpenBehavior(typeof(LoggingBehavior<,>));
-        });
-
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
 

@@ -1,18 +1,19 @@
-using Basket;
-using Carter;
-using Catalog;
-using Ordering;
-using Serilog;
-using Shared.Exceptions.Handler;
-using Shared.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddCarterWithAssemblies(typeof(CatalogModule).Assembly);
-
 // Add Services
+// Carter medatoR , fluentValidation
+var catalogAssemble = typeof(CatalogModule).Assembly;
+var basketAssemble = typeof(BasketModule).Assembly;
+
+builder.Services
+        .AddCarterWithAssemblies(catalogAssemble, basketAssemble);
+
+builder.Services
+       .AddMediatorWithAssemblies(catalogAssemble, basketAssemble);
+
 builder.Services
        .AddCatalogModule(builder.Configuration)
        .AddBasketModule(builder.Configuration)
