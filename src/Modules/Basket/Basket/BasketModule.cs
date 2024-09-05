@@ -16,11 +16,11 @@ public static class BasketModule
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
         services.AddDbContext<BasketDbContext>((sp, opt) =>
         {
-            opt.AddInterceptors(sp.GetService<ISaveChangesInterceptor>()!);
+            opt.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>()!);
             opt.UseNpgsql(connectionString);
         });
 
