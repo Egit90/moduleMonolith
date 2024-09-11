@@ -1,4 +1,5 @@
 ﻿using Basket.Data;
+using Basket.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -13,6 +14,10 @@ public static class BasketModule
 {
     public static IServiceCollection AddBasketModule(this IServiceCollection services, IConfiguration Configuration)
     {
+
+        services.AddScoped<IBasketRepository, BasketRepository>();
+
+
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();

@@ -3,6 +3,7 @@ using Basket.Basket.Dtos;
 using Basket.Basket.Exceptions;
 using Basket.Basket.Models;
 using Basket.Data;
+using Basket.Repository;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
@@ -22,14 +23,12 @@ public sealed class AddItemIntoBasketCommandValidator : AbstractValidator<AddIte
     }
 }
 
-internal sealed class AddItemIntoBasketHandler(BasketDbContext context) : ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
+internal sealed class AddItemIntoBasketHandler(IBasketRepository basketRepository) : ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
 {
     public async Task<AddItemIntoBasketResult> Handle(AddItemIntoBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = await context.ShoppingCarts
-                            .Include(x => x.Items)
-                            .SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken: cancellationToken)
-                            ?? throw new BasketNotFoundException(command.UserName);
+
+        var shoppingCart = await basketRepository.GetBasket(command.UserName, false, cancellationToken);
 
         shoppingCart.AddItem(
             command.ShoppingCartItem.ProductId,
@@ -38,7 +37,7 @@ internal sealed class AddItemIntoBasketHandler(BasketDbContext context) : IComma
             command.ShoppingCartItem.Price,
             command.ShoppingCartItem.ProductName);
 
-        await context.SaveChangesAsync(cancellationToken);
+        await basketRepository.SaveChangesAsync(cancellationToken);
 
         return new AddItemIntoBasketResult(shoppingCart.Id);
 

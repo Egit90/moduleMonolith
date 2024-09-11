@@ -1,6 +1,7 @@
 
 using Basket.Basket.Exceptions;
 using Basket.Data;
+using Basket.Repository;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
@@ -19,18 +20,15 @@ public sealed class RemoveItemFromBasketCommandValidator : AbstractValidator<Rem
     }
 }
 
-internal sealed class RemoveItemFromBasketHandler(BasketDbContext context) : ICommandHandler<RemoveItemFromBasketCommand, RemoveItemFromBasketResult>
+internal sealed class RemoveItemFromBasketHandler(IBasketRepository basketRepository) : ICommandHandler<RemoveItemFromBasketCommand, RemoveItemFromBasketResult>
 {
     public async Task<RemoveItemFromBasketResult> Handle(RemoveItemFromBasketCommand command, CancellationToken cancellationToken)
     {
-        var cart = await context.ShoppingCarts
-                                .Include(x => x.Items)
-                                .SingleOrDefaultAsync(x => x.UserName == command.UserName, cancellationToken: cancellationToken)
-                                ?? throw new BasketNotFoundException(command.UserName);
+        var cart = await basketRepository.GetBasket(command.UserName, false, cancellationToken);
 
         cart.RemoveItem(command.ProductId);
 
-        await context.SaveChangesAsync(cancellationToken);
+        await basketRepository.SaveChangesAsync(cancellationToken);
 
         return new RemoveItemFromBasketResult(cart.Id);
 
