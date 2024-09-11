@@ -1,9 +1,5 @@
-
-using Basket.Basket.Exceptions;
-using Basket.Data;
 using Basket.Repository;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
 using Shared.CQRS;
 
 namespace Basket.Basket.Features.RemoveItemFromBasket;
@@ -28,7 +24,7 @@ internal sealed class RemoveItemFromBasketHandler(IBasketRepository basketReposi
 
         cart.RemoveItem(command.ProductId);
 
-        await basketRepository.SaveChangesAsync(cancellationToken);
+        await basketRepository.SaveChangesAsync(command.UserName, cancellationToken);
 
         return new RemoveItemFromBasketResult(cart.Id);
 

@@ -16,7 +16,7 @@ public static class BasketModule
     {
 
         services.AddScoped<IBasketRepository, BasketRepository>();
-
+        services.Decorate<IBasketRepository, CashedBasketRepository>();
 
         var connectionString = Configuration.GetConnectionString("DefaultConnection");
 

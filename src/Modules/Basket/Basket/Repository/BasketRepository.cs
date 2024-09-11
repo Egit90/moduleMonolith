@@ -40,7 +40,7 @@ public class BasketRepository(BasketDbContext dbContext) : IBasketRepository
         return basket;
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public async Task<int> SaveChangesAsync(string? UserName = null, CancellationToken cancellationToken = default)
     {
         return await dbContext.SaveChangesAsync(cancellationToken);
     }

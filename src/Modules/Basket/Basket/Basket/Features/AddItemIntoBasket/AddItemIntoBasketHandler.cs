@@ -37,7 +37,7 @@ internal sealed class AddItemIntoBasketHandler(IBasketRepository basketRepositor
             command.ShoppingCartItem.Price,
             command.ShoppingCartItem.ProductName);
 
-        await basketRepository.SaveChangesAsync(cancellationToken);
+        await basketRepository.SaveChangesAsync(command.UserName, cancellationToken);
 
         return new AddItemIntoBasketResult(shoppingCart.Id);
 
