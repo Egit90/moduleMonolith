@@ -1,6 +1,3 @@
-using Catalog.Products.Events;
-using Shared.DDD;
-
 namespace Catalog.Products.Models;
 
 public sealed class Product : Aggregate<Guid>

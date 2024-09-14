@@ -14,6 +14,12 @@ public sealed class ShoppingCartItem : Entity<Guid>
     public decimal Price { get; private set; }
     public string ProductName { get; private set; } = default!;
 
+    internal void UpdatePrice(decimal newPrice)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(newPrice);
+        Price = newPrice;
+    }
+
     internal ShoppingCartItem(Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)
     {
         ShoppingCartId = shoppingCartId;

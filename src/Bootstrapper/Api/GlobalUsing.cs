@@ -7,3 +7,4 @@ global using Shared.Behaviors;
 global using Shared.Exceptions.Handler;
 global using Shared.Extensions;
 global using FluentValidation;
+global using Shared.Messaging.Extensions;

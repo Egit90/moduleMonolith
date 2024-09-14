@@ -3,15 +3,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Shared\Shared.csproj" />
     <ProjectReference Include="..\..\Catalog\Catalog.Contracts\Catalog.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Shared\Shared.Messaging\Shared.Messaging.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Basket/EventHandlers/" />
     <Folder Include="Basket/Features/AddItemIntoBasket/" />
     <Folder Include="Basket/Features/CheckOutBasket/" />
     <Folder Include="Basket/Features/GetBasket/" />
     <Folder Include="Basket/Features/RemoveItemFromBasket/" />
-    <Folder Include="Basket/Features/UpdateItemPriceInBasket/" />
   </ItemGroup>
 
   <PropertyGroup>
