@@ -1,5 +1,6 @@
 using Basket.Basket.Dtos;
 using Basket.Repository;
+using Catalog.Contracts.Products.Features.GetProductById;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -26,14 +27,14 @@ internal sealed class AddItemIntoBasketHandler(IBasketRepository basketRepositor
 
         var shoppingCart = await basketRepository.GetBasket(command.UserName, false, cancellationToken);
 
-        // var ItemInformation = await sender.Send(new GetProductByIdQuery(id));
+        var ItemInformation = await sender.Send(new GetProductByIdQuery(command.ShoppingCartItem.ProductId), cancellationToken);
 
         shoppingCart.AddItem(
             command.ShoppingCartItem.ProductId,
             command.ShoppingCartItem.Quantity,
             command.ShoppingCartItem.Color,
-            command.ShoppingCartItem.Price,
-            command.ShoppingCartItem.ProductName);
+            ItemInformation.Product.Price,
+            ItemInformation.Product.Name);
 
         await basketRepository.SaveChangesAsync(command.UserName, cancellationToken);
 

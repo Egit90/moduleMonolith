@@ -1,11 +1,9 @@
-
 using Catalog.Data;
 using Catalog.Products.Exceptions;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Products.Features.GetProductById;
-
 
 public class GetProductByIdHandler(CatalogDbContext dbContext) : IQueryHandler<GetProductByIdQuery, GetProductByIdResults>
 {
