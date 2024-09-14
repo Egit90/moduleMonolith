@@ -1,15 +1,11 @@
+
 using Catalog.Data;
-using Catalog.Products.Dtos;
 using Catalog.Products.Exceptions;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
 
 namespace Catalog.Products.Features.GetProductById;
 
-public sealed record GetProductByIdQuery(Guid ProductId) : IQuery<GetProductByIdResults>;
-
-public sealed record GetProductByIdResults(ProductDto Product);
 
 public class GetProductByIdHandler(CatalogDbContext dbContext) : IQueryHandler<GetProductByIdQuery, GetProductByIdResults>
 {

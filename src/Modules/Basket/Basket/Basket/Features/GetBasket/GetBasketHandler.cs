@@ -2,7 +2,6 @@ using Basket.Basket.Dtos;
 using Basket.Repository;
 using FluentValidation;
 using Mapster;
-using Shared.CQRS;
 
 namespace Basket.Basket.Features.GetBasket;
 

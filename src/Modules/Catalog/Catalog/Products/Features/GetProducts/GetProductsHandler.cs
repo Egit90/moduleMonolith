@@ -1,8 +1,6 @@
 using Catalog.Data;
-using Catalog.Products.Dtos;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
 using Shared.Pagination;
 
 namespace Catalog.Products.Features.GetProducts;

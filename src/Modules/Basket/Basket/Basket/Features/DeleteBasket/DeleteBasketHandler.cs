@@ -1,10 +1,5 @@
-using Basket.Basket.Exceptions;
-using Basket.Basket.Models;
-using Basket.Data;
 using Basket.Repository;
 using FluentValidation;
-using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
 
 namespace Basket.Basket.Features.DeleteBasket;
 

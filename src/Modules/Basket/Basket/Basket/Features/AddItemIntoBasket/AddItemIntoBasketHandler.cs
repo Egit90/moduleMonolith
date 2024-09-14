@@ -1,12 +1,8 @@
-using System.Windows.Input;
 using Basket.Basket.Dtos;
-using Basket.Basket.Exceptions;
-using Basket.Basket.Models;
-using Basket.Data;
 using Basket.Repository;
 using FluentValidation;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Shared.CQRS;
 
 namespace Basket.Basket.Features.AddItemIntoBasket;
 
@@ -23,12 +19,14 @@ public sealed class AddItemIntoBasketCommandValidator : AbstractValidator<AddIte
     }
 }
 
-internal sealed class AddItemIntoBasketHandler(IBasketRepository basketRepository) : ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
+internal sealed class AddItemIntoBasketHandler(IBasketRepository basketRepository, ISender sender) : ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
 {
     public async Task<AddItemIntoBasketResult> Handle(AddItemIntoBasketCommand command, CancellationToken cancellationToken)
     {
 
         var shoppingCart = await basketRepository.GetBasket(command.UserName, false, cancellationToken);
+
+        // var ItemInformation = await sender.Send(new GetProductByIdQuery(id));
 
         shoppingCart.AddItem(
             command.ShoppingCartItem.ProductId,

@@ -1,9 +1,6 @@
 using Catalog.Data;
-using Catalog.Products.Dtos;
 using Catalog.Products.Models;
 using FluentValidation;
-using Microsoft.Extensions.Logging;
-using Shared.CQRS;
 
 namespace Catalog.Products.Features.CreateProduct;
 

@@ -1,6 +1,5 @@
 using Basket.Repository;
 using FluentValidation;
-using Shared.CQRS;
 
 namespace Basket.Basket.Features.RemoveItemFromBasket;
 

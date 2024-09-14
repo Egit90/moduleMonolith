@@ -1,5 +1,4 @@
 using Basket.Basket.Dtos;
-using Basket.Basket.Models;
 using Carter;
 using Mapster;
 using MediatR;
