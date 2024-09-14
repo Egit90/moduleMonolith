@@ -1,4 +1,5 @@
 using Basket.Basket.Exceptions;
+using Newtonsoft.Json;
 using Shared.DDD;
 
 namespace Basket.Basket.Models;
@@ -10,6 +11,7 @@ public sealed class ShoppingCart : Aggregate<Guid>
     public IReadOnlyList<ShoppingCartItem> Items => _items.AsReadOnly();
     public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
 
+    private ShoppingCart() { }
     public static ShoppingCart Create(Guid id, string UserName)
     {
         ArgumentException.ThrowIfNullOrEmpty(UserName);
@@ -21,6 +23,14 @@ public sealed class ShoppingCart : Aggregate<Guid>
         };
 
         return ShoppingCart;
+    }
+
+    [JsonConstructor]
+    public ShoppingCart(Guid id, string userName, List<ShoppingCartItem> items)
+    {
+        Id = id;
+        UserName = userName;
+        _items = items ?? new List<ShoppingCartItem>();
     }
 
     public void AddItem(Guid productId, int quantity, string color, decimal price, string productName)
