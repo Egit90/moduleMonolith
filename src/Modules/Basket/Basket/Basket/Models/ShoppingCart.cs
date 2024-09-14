@@ -6,7 +6,7 @@ namespace Basket.Basket.Models;
 public sealed class ShoppingCart : Aggregate<Guid>
 {
     public string UserName { get; private set; } = default!;
-    public readonly List<ShoppingCartItem> _items = [];
+    private readonly List<ShoppingCartItem> _items = [];
     public IReadOnlyList<ShoppingCartItem> Items => _items.AsReadOnly();
     public decimal TotalPrice => Items.Sum(x => x.Price * x.Quantity);
 

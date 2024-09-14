@@ -18,7 +18,7 @@ public sealed class ShoppingCartConverter : JsonConverter<ShoppingCart>
 
         var shoppingCart = ShoppingCart.Create(id, userName);
 
-        var items = itemElement.Deserialize<List<ShoppingCartItem>>();
+        var items = itemElement.Deserialize<List<ShoppingCartItem>>(options);
         if (items != null)
         {
             var itemsFiled = typeof(ShoppingCart).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
